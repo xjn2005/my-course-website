@@ -2,6 +2,14 @@
 title: 实变函数
 semester: 2026 Fall
 instructor: 任课教师
+description: 实变函数课程主页。
+materials:
+  - title: 课程讲义
+    url: '#'
+    description: 本课程的讲义与课堂补充材料。
+  - title: 参考教材
+    url: '#'
+    description: 实变函数与测度论的推荐读物。
 schedule:
   - kind: lesson
     date: 2026-09-07

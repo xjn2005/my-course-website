@@ -1,0 +1,32 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import CourseNav from '../../../../components/CourseNav.astro';
+import Default from '../../../../layouts/Default.astro';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  const assignments = await getCollection('assignments');
+  return assignments.flatMap((assignment) => {
+    const course = courses.find((entry) => entry.slug === assignment.data.course);
+    if (!course) return [];
+    return [{
+      params: { course: course.slug, assignment: assignment.slug.split('/').at(-1)! },
+      props: { course, assignment },
+    }];
+  });
+}
+
+const { course, assignment } = Astro.props as {
+  course: CollectionEntry<'courses'>;
+  assignment: CollectionEntry<'assignments'>;
+};
+const { Content } = await render(assignment);
+---
+
+<Default title={`${course.data.title} · ${assignment.data.title}`}>
+  <p class="course-back"><a href={import.meta.env.BASE_URL}>← 所有课程</a></p>
+  <h1>{course.data.title}</h1>
+  <CourseNav slug={course.slug} />
+  <h2>{assignment.data.title}</h2>
+  <article class="course-overview"><Content /></article>
+</Default>

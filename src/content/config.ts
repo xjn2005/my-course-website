@@ -23,14 +23,34 @@ const breakRow = z.object({
   title: z.string(),
 });
 
+const material = z.object({
+  title: z.string(),
+  url: z.string(),
+  description: z.string().optional(),
+});
+
 const courses = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     semester: z.string(),
     instructor: z.string(),
+    description: z.string().optional(),
+    materials: z.array(material).default([]),
     schedule: z.array(z.discriminatedUnion('kind', [lesson, breakRow])).default([]),
   }),
 });
 
-export const collections = { courses };
+const assignments = defineCollection({
+  type: 'content',
+  schema: z.object({
+    course: z.string(),
+    title: z.string(),
+    date: z.coerce.date(),
+    pdf: z.string().optional(),
+    attachment: z.string().optional(),
+    solutions: z.string().optional(),
+  }),
+});
+
+export const collections = { courses, assignments };

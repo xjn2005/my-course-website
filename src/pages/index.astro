@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { coursePath } from '../lib/course-path';
 import Default from '../layouts/Default.astro';
 
 const courses = await getCollection('courses');
@@ -11,7 +12,7 @@ const courses = await getCollection('courses');
     {
       courses.map((course) => (
         <li>
-          <a href={`${import.meta.env.BASE_URL}/courses/${course.slug}/`}>{course.data.title}</a>
+          <a href={coursePath(course.slug)}>{course.data.title}</a>
           <span>{course.data.semester}</span>
           <span>{course.data.instructor}</span>
         </li>
