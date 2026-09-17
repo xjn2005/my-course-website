@@ -6,8 +6,8 @@ h1, h2, strong, th, .course-nav, .assignment-list { font-family: 'Source Han San
 h1 { margin: 0 0 .25rem; font-size: 2rem; }
 h2 { margin: 2.5rem 0 1rem; font-size: 1.5rem; }
 a { color: #b91c1c; }
-.course-list { padding: 0; list-style: none; }
-.course-list li { display: grid; grid-template-columns: minmax(12rem, 1fr) auto auto; gap: 1rem; padding: .55rem 0; border-bottom: 1px solid #e5e7eb; }
+.course-list { margin: 0; padding: 0; list-style: none; }
+.course-list li { display: grid; grid-template-columns: minmax(12rem, 1fr) auto auto; gap: 1rem; padding: .55rem 0; }
 .course-list a { font-weight: 700; }
 .course-meta, .course-back { color: #5b6570; }
 .course-header { margin-bottom: 2.5rem; }
