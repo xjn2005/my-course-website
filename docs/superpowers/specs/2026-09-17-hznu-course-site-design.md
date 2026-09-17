@@ -12,6 +12,13 @@
 - 课程主页显示课程简介；移除独立 Lectures 页面。
 - Materials 是教材、参考书和补充资料的独立页；Assignments 是按课程筛选的作业清单，并可进入每次作业的详情页。
 
+## 首页、Policy 与 Blog
+
+- 首页按学期分区，当前示例为「2026 Fall」；每个分区自动列出课程名、学期和教师，往期课程可在未来加入独立分区。
+- 首页在课程分区后提供两个简洁入口：`Policy` 和 `Blog`。
+- `Policy` 是独立 Markdown 页面，首段为 Academic Integrity，说明学术诚信与合作边界。
+- `Blog` 是独立内容集合，自动列出感想文章并提供文章详情页；它承载课程感想与教学笔记。
+
 ## Schedule
 
 每门课程的 Schedule 固定为五列：`Date`、`Topic`、`Slides`、`Notes`、`Video`。
@@ -27,7 +34,7 @@
 - 作业使用独立 Astro 内容集合，含课程标识、发布日期、标题、可选 PDF/附件/答案和 Markdown 正文；课程的 Assignments 页面只查询本课程的作业。
 - 课程条目包含日期、标题、可选说明、可选 Slides / Notes / Video 链接，或停课提示。
 - 页面按日期排序课程条目并渲染统一表格；没有任何资源链接时不生成资源图标。
-- 字体不依赖外部加载：正文优先使用 Source Han Serif / Noto Serif CJK 的中文衬线字回退，标题与导航优先使用 Source Han Sans / Noto Sans / 系统中文无衬线字，以强化课程资料的阅读层级。
+- 通过项目依赖实际加载 Noto Serif SC（标题）与 Noto Sans SC（正文和导航），不再依赖系统字体回退；两者提供完整的中英混排字形与一致的阅读层级。
 - 删除仅服务于旧 Jekyll Lecture / 事件模型的 Astro 页面与组件，保留新的通用布局和所需静态资源。
 - Astro 生产构建通过后，删除原 Jekyll 源码、Gemfile 和示例课程内容；项目只保留 Astro 作为唯一站点实现。
 
@@ -38,4 +45,4 @@
 
 ## 非目标
 
-- 不增加 CMS、数据库或新的前端依赖。
+- 不增加 CMS 或数据库。
