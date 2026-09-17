@@ -1,43 +1,60 @@
-:root { color: #172033; background: #fff; font-family: 'Noto Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; }
+:root {
+  color: #172033;
+  background: #fff;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+}
 
-body { margin: 0; font-size: 18px; line-height: 1.6; }
+body { margin: 0; font-size: 18px; line-height: 1.7; }
 .site-shell { max-width: 700px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-h1, h2, strong, th, .course-nav, .assignment-list { font-family: 'Aptos Display', 'Noto Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; }
+h1, h2, strong, th, .course-nav, .assignment-list {
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+}
 h1 { margin: 0 0 .25rem; font-size: 2rem; }
 h2 { margin: 2.5rem 0 1rem; font-size: 1.5rem; }
-a { color: #b91c1c; }
-.course-list { margin: 0 0 0 -.08em; padding: 0; list-style: none; }
-.course-list li { display: flex; flex-wrap: wrap; gap: .75rem; align-items: baseline; padding: .55rem 0; }
-.course-list a { font-weight: 700; }
-.course-list span { color: #5b6570; }
+a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13em; }
+
+.course-group { margin-top: 1.7rem; }
+.course-group h2 { margin: 0 0 .45rem; color: #5b6570; font-size: 1.1rem; }
+.course-list, .blog-list { margin: 0 0 0 -.08em; padding: 0; list-style: none; }
+.course-list li, .blog-list li { display: flex; flex-wrap: wrap; gap: .75rem; align-items: baseline; padding: .55rem 0; }
+.course-list a, .blog-list a { font-weight: 700; }
+.course-list span, .blog-list time, .article-date { color: #5b6570; }
+.site-links { display: flex; gap: 1rem; margin-top: 2.25rem; }
+
 .course-meta, .course-back { color: #5b6570; }
 .course-header { margin-bottom: 2.5rem; }
 .course-nav { display: flex; gap: 1rem; margin: 1.5rem 0 2rem; padding: 0; list-style: none; }
-.course-nav a { display: block; padding-bottom: .5rem; color: #1f2933; font-weight: 600; }
-.course-nav a[aria-current='page'] { color: #a61b29; border-bottom: 3px solid #a61b29; }
+.course-nav a { display: block; color: #1f2933; font-weight: 600; }
+.course-nav a[aria-current='page'] { color: #a61b29; }
+
 .materials-list { padding-left: 1.25rem; }
 .materials-list li { margin-bottom: 1rem; }
 .materials-list span { display: block; color: #5b6570; }
 .assignment-list { padding: 0; list-style: none; }
-.assignment-list li { display: flex; gap: .75rem; align-items: baseline; padding: .65rem 0; border-bottom: 1px solid #e5e7eb; }
+.assignment-list li { display: flex; gap: .75rem; align-items: baseline; padding: .65rem 0; }
 .assignment-icons { display: flex; gap: .5rem; margin-left: auto; }
-.assignment-icons a { color: #a61b29; }
+.assignment-icons a, .schedule-resource a { color: #a61b29; }
+
 .schedule-wrap { overflow-x: auto; }
-.schedule { width: 100%; border-collapse: collapse; font-family: 'Aptos', 'Noto Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif; }
-.schedule th { padding: .45rem .7rem; border-bottom: 3px solid #29323a; text-align: left; }
+.schedule { width: 100%; border-collapse: separate; border-spacing: 0 .3rem; font-family: inherit; }
+.schedule th { padding: .45rem .7rem; text-align: left; }
 .schedule td { padding: .8rem .7rem; vertical-align: top; }
 .schedule tbody tr:nth-child(odd) { background: #fcf8f8; }
-.schedule td { border-bottom: 1px solid #f0e2e2; }
 .schedule-detail { margin-top: .25rem; }
 .schedule-detail span { font-weight: 600; }
 .schedule-resource { width: 1%; text-align: center; }
-.schedule-resource a { color: #a61b29; font-size: 1.35rem; }
-.schedule-break td { background: #f7e5e5; color: #7f1d2d; font-weight: 600; }
+.schedule-resource a { font-size: 1.35rem; }
+.schedule-break td { background: #f6e9e8; color: #7f1d2d; font-weight: 600; }
+
+.article-content { max-width: 42rem; }
+.article-content h2 { margin-top: 2rem; }
+.article-content p { margin: 1rem 0; }
+.article-date { display: block; margin: -.1rem 0 1.5rem; font-size: .9rem; }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .site-shell { padding: 2rem 1rem; }
-  .course-list li { gap: .4rem; }
+  .course-list li, .blog-list li { gap: .4rem; }
   .course-nav { gap: .65rem; font-size: .9rem; }
   .assignment-list li { flex-wrap: wrap; }
   .schedule { min-width: 640px; }

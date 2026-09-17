@@ -1,0 +1,24 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { sitePath } from '../../lib/course-path';
+import Default from '../../layouts/Default.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('blog')).map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { Content } = await render(post);
+---
+
+<Default title={post.data.title}>
+  <p class="course-back"><a href={sitePath('blog')}>← Blog</a></p>
+  <article class="article-content">
+    <h1>{post.data.title}</h1>
+    <time class="article-date" datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('zh-CN')}</time>
+    <Content />
+  </article>
+</Default>

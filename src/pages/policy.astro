@@ -1,0 +1,15 @@
+---
+import { sitePath } from '../lib/course-path';
+import Default from '../layouts/Default.astro';
+---
+
+<Default title="Policy">
+  <p class="course-back"><a href={sitePath()}>← 课程主页</a></p>
+  <h1>Policy</h1>
+  <article class="article-content">
+    <h2>Academic Integrity</h2>
+    <p>课程中的作业、报告与考试应如实反映个人的学习与思考。除非题目另有说明，请独立完成并保留必要的推导、代码与资料记录。</p>
+    <p>使用书籍、论文、网络资料、同学讨论或人工智能工具时，应明确标注来源和具体帮助；合作应遵守每项作业公布的范围。</p>
+    <p>抄袭、代写、伪造结果或隐瞒不当协作都会损害学习共同体。若对边界不确定，请在提交前主动联系任课教师。</p>
+  </article>
+</Default>

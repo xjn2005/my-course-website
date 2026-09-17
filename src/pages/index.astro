@@ -1,22 +1,37 @@
 ---
 import { getCollection } from 'astro:content';
-import { coursePath } from '../lib/course-path';
+import { coursePath, sitePath } from '../lib/course-path';
 import Default from '../layouts/Default.astro';
 
 const courses = await getCollection('courses');
+const courseGroups = new Map<string, typeof courses>();
+
+for (const course of courses) {
+  const group = courseGroups.get(course.data.semester) ?? [];
+  group.push(course);
+  courseGroups.set(course.data.semester, group);
+}
 ---
 
 <Default title="课程主页">
   <h1>课程主页</h1>
-  <ul class="course-list">
-    {
-      courses.map((course) => (
-        <li>
-          <a href={coursePath(course.slug)}>{course.data.title}</a>
-          <span>{course.data.semester}</span>
-          <span>{course.data.instructor}</span>
-        </li>
-      ))
-    }
-  </ul>
+  {
+    Array.from(courseGroups).map(([semester, entries]) => (
+      <section class="course-group">
+        <h2>{semester}</h2>
+        <ul class="course-list">
+          {entries.map((course) => (
+            <li>
+              <a href={coursePath(course.slug)}>{course.data.title}</a>
+              <span>{course.data.instructor}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+  <nav class="site-links" aria-label="网站页面">
+    <a href={sitePath('policy')}>Policy</a>
+    <a href={sitePath('blog')}>Blog</a>
+  </nav>
 </Default>
