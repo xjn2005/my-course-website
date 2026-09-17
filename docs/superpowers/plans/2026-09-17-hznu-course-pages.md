@@ -191,4 +191,3 @@ git commit -m "Add course materials and assignments"
 - Coverage: the plan adds course home, Schedule, Materials, Assignments and detail pages; 700px layout; screenshot-aligned resource icons; and GitHub Pages-safe paths.
 - Scope: it restores only requested course content; Lectures remains removed.
 - Consistency: courses use \`slug\`; assignments use the same \`course\` slug; all nested links call \`coursePath\`.
-
