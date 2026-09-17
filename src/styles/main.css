@@ -19,8 +19,14 @@ a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13
 .course-list li, .blog-list li { display: flex; flex-wrap: wrap; gap: .75rem; align-items: baseline; padding: .55rem 0; }
 .course-list a, .blog-list a { font-weight: 700; }
 .course-list span, .blog-list time, .article-date { color: #5b6570; }
-.site-links { display: flex; gap: 1rem; margin-top: 2.25rem; }
+.site-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .45rem;
+  margin-top: 2.25rem;
 
+}
 .course-meta, .course-back { color: #5b6570; }
 .course-header { margin-bottom: 2.5rem; }
 .course-nav { display: flex; gap: 1rem; margin: 1.5rem 0 2rem; padding: 0; list-style: none; }
