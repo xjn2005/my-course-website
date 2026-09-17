@@ -1,6 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import CourseNav from '../../../components/CourseNav.astro';
+import CourseHeader from '../../../components/CourseHeader.astro';
 import { coursePath } from '../../../lib/course-path';
 import Default from '../../../layouts/Default.astro';
 
@@ -24,9 +24,7 @@ const date = (value: Date) => value.toLocaleDateString('zh-CN', { timeZone: 'UTC
 ---
 
 <Default title={`${course.data.title} · Assignments`}>
-  <p class="course-back"><a href={import.meta.env.BASE_URL}>← 所有课程</a></p>
-  <h1>{course.data.title}</h1>
-  <CourseNav slug={course.slug} />
+  <CourseHeader course={course} section="assignments" />
   <h2>Assignments</h2>
   <ul class="assignment-list">
     {

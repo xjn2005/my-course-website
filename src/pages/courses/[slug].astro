@@ -1,6 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import CourseNav from '../../components/CourseNav.astro';
+import CourseHeader from '../../components/CourseHeader.astro';
 import Default from '../../layouts/Default.astro';
 
 export async function getStaticPaths() {
@@ -15,10 +15,7 @@ const { Content } = await render(course);
 ---
 
 <Default title={`${course.data.title} · ${course.data.semester}`}>
-  <p class="course-back"><a href={import.meta.env.BASE_URL}>← 所有课程</a></p>
-  <h1>{course.data.title}</h1>
-  <p class="course-meta">{course.data.semester} · {course.data.instructor}</p>
-  <CourseNav slug={course.slug} />
+  <CourseHeader course={course} section="home" />
   {course.data.description && <p>{course.data.description}</p>}
   <article class="course-overview"><Content /></article>
 </Default>
