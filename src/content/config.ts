@@ -53,12 +53,4 @@ const assignments = defineCollection({
   }),
 });
 
-const blog = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-  }),
-});
-
-export const collections = { courses, assignments, blog };
+export const collections = { courses, assignments };

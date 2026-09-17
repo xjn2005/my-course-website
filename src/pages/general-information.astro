@@ -1,0 +1,19 @@
+---
+import { sitePath } from '../lib/course-path';
+import Default from '../layouts/Default.astro';
+---
+
+<Default title="General Information">
+  <p class="course-back"><a href={sitePath()}>← Course Home</a></p>
+  <article class="article-content">
+    <h1>General Information</h1>
+    <h2>Course Participation</h2>
+    <p>Students are expected to attend regularly, prepare for class, and contribute to a respectful learning environment.</p>
+    <h2>Assessment and Submission</h2>
+    <p>Follow the requirements for each assignment and submit work by the announced deadline. Contact the instructor early if circumstances affect your work.</p>
+    <h2>Academic Integrity</h2>
+    <p>Submit original work and cite all sources. Collaboration and the use of external or AI tools must follow the instructions for each assignment.</p>
+    <h2>Communication</h2>
+    <p>Check course announcements regularly and contact the instructor promptly when you need clarification or support.</p>
+  </article>
+</Default>
