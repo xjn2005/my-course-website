@@ -1,0 +1,24 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Schedule from '../../components/Schedule.astro';
+import Default from '../../layouts/Default.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('courses')).map((course) => ({
+    params: { slug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props as { course: CollectionEntry<'courses'> };
+const { Content } = await render(course);
+---
+
+<Default title={`${course.data.title} · ${course.data.semester}`}>
+  <p class="course-back"><a href={import.meta.env.BASE_URL}>← 所有课程</a></p>
+  <h1>{course.data.title}</h1>
+  <p class="course-meta">{course.data.semester} · {course.data.instructor}</p>
+  <article class="course-overview"><Content /></article>
+  <h2>Schedule</h2>
+  <Schedule entries={course.data.schedule} />
+</Default>
