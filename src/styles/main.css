@@ -11,7 +11,7 @@ a { color: #b91c1c; }
 .course-list a { font-weight: 700; }
 .course-meta, .course-back { color: #5b6570; }
 .course-header { margin-bottom: 2.5rem; }
-.course-nav { display: flex; gap: 1rem; margin: 1.5rem 0 2rem; padding: 0; list-style: none; border-bottom: 1px solid #d1d5db; }
+.course-nav { display: flex; gap: 1rem; margin: 1.5rem 0 2rem; padding: 0; list-style: none; }
 .course-nav a { display: block; padding-bottom: .5rem; color: #1f2933; font-weight: 600; }
 .course-nav a[aria-current='page'] { color: #a61b29; border-bottom: 3px solid #a61b29; }
 .materials-list { padding-left: 1.25rem; }
