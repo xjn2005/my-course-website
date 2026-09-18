@@ -10,10 +10,10 @@ instructor: 张慧增
 
 - 暂未发布课程日程。
 
-## Materials
-
-- 暂未发布课程资料。
-
 ## Assignments
 
 - 暂未发布作业。
+
+## Materials
+
+- 暂未发布课程资料。

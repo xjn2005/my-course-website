@@ -14,6 +14,10 @@ instructor: 刘奇奇
 2. 了解Linux命令
 
 
+## Assignments
+
+- 暂未发布作业。
+
 ## Materials
 
 1. [南京大学蒋炎岩的课程主页](https://jyywiki.cn/)
@@ -23,7 +27,3 @@ instructor: 刘奇奇
 5. [1000 行代码的操作系统](https://operating-system-in-1000-lines.vercel.app/zh/)
 6. [清华操作系统课程](https://github.com/chyyuu/os_course_info)
 7. [OSTEP Chinese Version](https://github.com/iTanken/ostep-chinese)
-
-## Assignments
-
-- 暂未发布作业。
