@@ -4,7 +4,7 @@ semester: 2026 Fall
 instructor: 任课教师
 ---
 
-- 课时：周四第 3–5 节理论课。
+- 课时：周四 9:45–12:10 理论课。
 
 ## Schedule
 

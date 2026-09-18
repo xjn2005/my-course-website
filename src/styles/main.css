@@ -4,6 +4,7 @@
   font-family: 'LXGW WenKai Screen R', 'Noto Serif CJK SC', 'Source Han Serif SC', 'Songti SC', STSong, SimSun, serif;
 }
 
+html { overflow-y: scroll; }
 body { margin: 0; font-size: 17px; line-height: 1.7; }
 .site-shell {
   box-sizing: border-box;
@@ -56,6 +57,7 @@ a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13
 .footer-links a { display: inline-flex; align-items: center; color: #5b6570; text-decoration: none; }
 .footer-links a:hover, .footer-links a:focus-visible { color: #a61b29; }
 .footer-links .fa-github { font-size: 1.2rem; }
+.footer-links .fa-envelope { font-size: 1.2rem; }
 .footer-license { gap: .18rem; }
 .footer-license i { font-size: 1.2rem; }
 .page-pager { display: flex; justify-content: space-between; margin-top: auto; padding-top: 2rem; }

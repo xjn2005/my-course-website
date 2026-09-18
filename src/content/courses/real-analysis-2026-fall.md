@@ -1,10 +1,10 @@
 ---
 title: 实变函数
 semester: 2026 Fall
-instructor: 任课教师
+instructor: 赵建杰
 ---
 
-- 课时：周一第 6–8 节、周四第 1–2 节。
+- 课时：周一 13:20–15:50、周四 8:05–9:35。
 
 ## Schedule
 
