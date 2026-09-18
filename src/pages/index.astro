@@ -4,6 +4,7 @@ import { coursePath, sitePath } from '../lib/course-path';
 import Default from '../layouts/Default.astro';
 
 const courses = await getCollection('courses');
+const guidelines = (await getCollection('guidelines')).sort((a, b) => a.data.order - b.data.order);
 const courseGroups = new Map<string, typeof courses>();
 
 for (const course of courses) {
@@ -15,6 +16,26 @@ for (const course of courses) {
 
 <Default title="课程主页">
   <h1>课程主页</h1>
+  <section class="home-intro">
+    <blockquote>
+      <p>「大学之所以有存在的理由，是因为它维系着知识与生命热情之间的联系。」</p>
+      <cite>——阿尔弗雷德·诺思·怀特海，《教育的目的》</cite>
+    </blockquote>
+    <p>在我所理解的大学里，一切课程与教学活动都理应遵循《通用准则》，不得与其中确立的原则相抵触。遗憾的是，这份准则目前仅由我个人拟定，尚未成为这所学校共同确立并遵守的原则。</p>
+  </section>
+  <nav class="guidelines" aria-label="通用准则">
+    <strong>通用准则</strong>
+    <span class="guideline-links">
+      {
+        guidelines.map((guideline, index) => (
+          <>
+            {index > 0 && ' · '}
+            <a href={sitePath(`guidelines/${guideline.slug}`)}>{guideline.data.title}</a>
+          </>
+        ))
+      }
+    </span>
+  </nav>
   {
     Array.from(courseGroups).map(([semester, entries]) => (
       <section class="course-group">
@@ -30,7 +51,17 @@ for (const course of courses) {
       </section>
     ))
   }
-  <nav class="site-links" aria-label="网站页面">
-    <a href={sitePath('general-information')}>General Information</a>
-  </nav>
+  <footer slot="footer" class="site-footer">
+    <span>Copyright © 2026 徐嘉宁</span>
+    <nav class="footer-links" aria-label="网站链接">
+      <a href="https://github.com/xjn2005/my-course-website" target="_blank" rel="noreferrer" aria-label="GitHub 仓库" title="GitHub 仓库">
+        <i class="fab fa-github" aria-hidden="true" />
+      </a>
+      <a class="footer-license" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noreferrer" aria-label="知识共享署名-非商业性使用 4.0 国际许可协议" title="CC BY-NC 4.0">
+        <i class="fab fa-creative-commons" aria-hidden="true" />
+        <i class="fab fa-creative-commons-by" aria-hidden="true" />
+        <i class="fab fa-creative-commons-nc" aria-hidden="true" />
+      </a>
+    </nav>
+  </footer>
 </Default>

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import CourseHeader from '../../components/CourseHeader.astro';
+import { coursePath } from '../../lib/course-path';
 import Default from '../../layouts/Default.astro';
 
 export async function getStaticPaths() {
@@ -11,11 +12,39 @@ export async function getStaticPaths() {
 }
 
 const { course } = Astro.props as { course: CollectionEntry<'courses'> };
+const semesterCourses = (await getCollection('courses')).filter((item) => item.data.semester === course.data.semester);
+const currentIndex = semesterCourses.findIndex((item) => item.slug === course.slug);
+const previousPath = currentIndex > 0 ? coursePath(semesterCourses[currentIndex - 1].slug) : '';
+const nextPath = currentIndex < semesterCourses.length - 1 ? coursePath(semesterCourses[currentIndex + 1].slug) : '';
 const { Content } = await render(course);
 ---
 
 <Default title={`${course.data.title} · ${course.data.semester}`}>
-  <CourseHeader course={course} section="home" />
-  {course.data.description && <p>{course.data.description}</p>}
-  <article class="course-overview"><Content /></article>
+  <CourseHeader course={course} />
+  <article class="article-content"><Content /></article>
+  <nav class="page-pager" aria-label={`${course.data.semester} 课程切换`}>
+    {
+      previousPath ? (
+        <a class="page-pager__arrow page-pager__previous" href={previousPath} aria-label="上一门课程"></a>
+      ) : (
+        <span class="page-pager__arrow page-pager__previous is-disabled" aria-hidden="true"></span>
+      )
+    }
+    {
+      nextPath ? (
+        <a class="page-pager__arrow page-pager__next" href={nextPath} aria-label="下一门课程"></a>
+      ) : (
+        <span class="page-pager__arrow page-pager__next is-disabled" aria-hidden="true"></span>
+      )
+    }
+  </nav>
 </Default>
+
+<script define:vars={{ previousPath, nextPath }}>
+  document.addEventListener('keydown', (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+    const destination = event.key === 'ArrowLeft' ? previousPath : event.key === 'ArrowRight' ? nextPath : '';
+    if (destination) window.location.assign(destination);
+  });
+</script>

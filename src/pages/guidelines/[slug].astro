@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Default from '../../layouts/Default.astro';
+import { sitePath } from '../../lib/course-path';
+
+export function getStaticPaths() {
+  return getCollection('guidelines').then((guidelines) => guidelines.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  })));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const guidelines = (await getCollection('guidelines')).sort((a, b) => a.data.order - b.data.order);
+const currentIndex = guidelines.findIndex((guideline) => guideline.slug === entry.slug);
+const previousPath = currentIndex > 0 ? sitePath(`guidelines/${guidelines[currentIndex - 1].slug}`) : '';
+const nextPath = currentIndex < guidelines.length - 1 ? sitePath(`guidelines/${guidelines[currentIndex + 1].slug}`) : '';
+---
+
+<Default title={entry.data.title}>
+  <p class="course-back"><a href={sitePath()}>课程主页</a></p>
+  <article class="article-content">
+    <h1>{entry.data.title}</h1>
+    <Content />
+  </article>
+  <nav class="page-pager" aria-label="通用准则切换">
+    {
+      previousPath ? (
+        <a class="page-pager__arrow page-pager__previous" href={previousPath} aria-label="上一项"></a>
+      ) : (
+        <span class="page-pager__arrow page-pager__previous is-disabled" aria-hidden="true"></span>
+      )
+    }
+    {
+      nextPath ? (
+        <a class="page-pager__arrow page-pager__next" href={nextPath} aria-label="下一项"></a>
+      ) : (
+        <span class="page-pager__arrow page-pager__next is-disabled" aria-hidden="true"></span>
+      )
+    }
+  </nav>
+</Default>
+
+<script define:vars={{ previousPath, nextPath }}>
+  document.addEventListener('keydown', (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+    const destination = event.key === 'ArrowLeft' ? previousPath : event.key === 'ArrowRight' ? nextPath : '';
+    if (destination) window.location.assign(destination);
+  });
+</script>
