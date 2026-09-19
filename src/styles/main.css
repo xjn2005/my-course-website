@@ -1,11 +1,3 @@
-@font-face {
-  font-family: 'Libertinus Math';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/libertinus-math-latin-400-normal.woff2') format('woff2');
-}
-
 :root {
   color: #172033;
   background: #f4f5f7;
@@ -59,6 +51,21 @@ a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13
   color: #5b6570;
 }
 .article-content blockquote p { margin: 0; }
+.article-content table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: .95em;
+}
+.article-content th, .article-content td {
+  padding: .55rem .7rem;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: top;
+}
+.article-content th:first-child, .article-content td:first-child { white-space: nowrap; }
+.article-content th { background: #f4f5f7; font-weight: 700; }
+.article-content tbody tr:nth-child(even) { background: #fafbfc; }
 .article-date { display: block; margin: -.1rem 0 1.5rem; font-size: .9rem; }
 .site-footer { margin-top: auto; color: #5b6570; font-size: .9rem; }
 .footer-links { display: flex; gap: .8rem; align-items: center; margin-top: .35rem; }
@@ -80,4 +87,6 @@ a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13
   body { font-size: 15px; }
   .site-shell { padding: 2rem 1rem; border: 0; box-shadow: none; }
   .course-list li, .blog-list li { gap: .4rem; }
+  .article-content table { font-size: .85em; }
+  .article-content th, .article-content td { padding: .45rem .5rem; }
 }
