@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import { parseAssignmentSlug } from '../lib/assignment.mjs';
+import { assignmentPath } from '../lib/course-path';
+
+const courseSlug = Astro.params.slug ?? '';
+const entries = (await getCollection('assignments'))
+  .flatMap((entry) => {
+    const assignment = parseAssignmentSlug(entry.slug);
+    return assignment?.courseSlug === courseSlug ? [{ entry, ...assignment }] : [];
+  })
+  .sort((a, b) => a.number - b.number || Number(a.isSolution) - Number(b.isSolution));
+const assignments = new Map<number, { question?: typeof entries[number]; solution?: typeof entries[number] }>();
+
+for (const entry of entries) {
+  const assignment = assignments.get(entry.number) ?? {};
+  assignment[entry.isSolution ? 'solution' : 'question'] = entry;
+  assignments.set(entry.number, assignment);
+}
+---
+
+{
+  assignments.size === 0 ? (
+    <p>暂未发布作业。</p>
+  ) : (
+    <ul>
+      {
+        Array.from(assignments).map(([number, assignment]) => (
+          <li>
+            {assignment.question ? (
+              <a href={assignmentPath(courseSlug, assignment.question.fileSlug)}>作业 {number}</a>
+            ) : (
+              `作业 ${number} 待发布`
+            )}
+            {' | '}
+            {assignment.solution ? (
+              <a href={assignmentPath(courseSlug, assignment.solution.fileSlug)}>答案</a>
+            ) : (
+              '答案待发布'
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  )
+}

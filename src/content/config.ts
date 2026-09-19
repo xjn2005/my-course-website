@@ -17,4 +17,9 @@ const guidelines = defineCollection({
   }),
 });
 
-export const collections = { courses, guidelines };
+const assignments = defineCollection({
+  type: 'content',
+  schema: z.object({}),
+});
+
+export const collections = { courses, guidelines, assignments };

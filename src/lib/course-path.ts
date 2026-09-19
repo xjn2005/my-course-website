@@ -8,3 +8,7 @@ export function sitePath(segment = '') {
 export function coursePath(slug: string, section = '') {
   return sitePath(`courses/${slug}${section ? `/${section}` : ''}`);
 }
+
+export function assignmentPath(courseSlug: string, fileSlug: string) {
+  return coursePath(courseSlug, `assignments/${fileSlug}`);
+}

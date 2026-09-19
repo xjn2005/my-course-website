@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from 'astro:content';
+import Default from '../../../../layouts/Default.astro';
+import { getAdjacentAssignments, parseAssignmentSlug } from '../../../../lib/assignment.mjs';
+import { assignmentPath, coursePath } from '../../../../lib/course-path';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses');
+  const courseSlugs = new Set<string>(courses.map((course) => course.slug));
+
+  return (await getCollection('assignments')).flatMap((entry) => {
+    const assignment = parseAssignmentSlug(entry.slug);
+    if (!assignment || !courseSlugs.has(assignment.courseSlug)) return [];
+
+    return [{
+      params: { course: assignment.courseSlug, assignment: assignment.fileSlug },
+      props: { entry, assignment },
+    }];
+  });
+}
+
+const { entry, assignment } = Astro.props;
+const { Content } = await render(entry);
+const title = `作业 ${assignment.number}${assignment.isSolution ? ' 答案' : ''}`;
+const { previous, next } = getAdjacentAssignments(await getCollection('assignments'), entry.slug);
+const previousPath = previous ? assignmentPath(previous.courseSlug, previous.fileSlug) : '';
+const nextPath = next ? assignmentPath(next.courseSlug, next.fileSlug) : '';
+---
+
+<Default title={title}>
+  <p class="course-back"><a href={coursePath(assignment.courseSlug)}>返回课程</a></p>
+  <article class="article-content">
+    <Content />
+  </article>
+  <nav class="page-pager" aria-label="作业切换">
+    {
+      previousPath ? (
+        <a class="page-pager__arrow page-pager__previous" href={previousPath} aria-label="上一份作业"></a>
+      ) : (
+        <span class="page-pager__arrow page-pager__previous is-disabled" aria-hidden="true"></span>
+      )
+    }
+    {
+      nextPath ? (
+        <a class="page-pager__arrow page-pager__next" href={nextPath} aria-label="下一份作业"></a>
+      ) : (
+        <span class="page-pager__arrow page-pager__next is-disabled" aria-hidden="true"></span>
+      )
+    }
+  </nav>
+</Default>
+
+<script define:vars={{ previousPath, nextPath }}>
+  document.addEventListener('keydown', (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+    const destination = event.key === 'ArrowLeft' ? previousPath : event.key === 'ArrowRight' ? nextPath : '';
+    if (destination) window.location.assign(destination);
+  });
+</script>

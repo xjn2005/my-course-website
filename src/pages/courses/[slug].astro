@@ -1,5 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Assignments from '../../components/Assignments.astro';
 import CourseHeader from '../../components/CourseHeader.astro';
 import { coursePath } from '../../lib/course-path';
 import Default from '../../layouts/Default.astro';
@@ -21,7 +22,7 @@ const { Content } = await render(course);
 
 <Default title={`${course.data.title} · ${course.data.semester}`}>
   <CourseHeader course={course} />
-  <article class="article-content"><Content /></article>
+  <article class="article-content"><Content components={{ Assignments }} /></article>
   <nav class="page-pager" aria-label={`${course.data.semester} 课程切换`}>
     {
       previousPath ? (

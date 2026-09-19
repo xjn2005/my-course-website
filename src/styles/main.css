@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Libertinus Math';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/libertinus-math-latin-400-normal.woff2') format('woff2');
+}
+
 :root {
   color: #172033;
   background: #f4f5f7;
@@ -10,14 +18,15 @@ body { margin: 0; font-size: 17px; line-height: 1.7; }
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 780px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
+  padding: 3rem 2.5rem 5rem;
   background: #fff;
   border-inline: 1px solid #e5e7eb;
   box-shadow: 0 0 1.5rem rgb(23 32 51 / 8%);
 }
+.site-shell > :not(.site-footer) { width: 100%; max-width: 42rem; margin-inline: auto; }
 h1 { margin: 0 0 .25rem; font-size: 1.9rem; }
 h2 { margin: 2.5rem 0 1rem; font-size: 1.4rem; }
 a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13em; }
@@ -40,7 +49,6 @@ a { color: #a61b29; text-decoration-thickness: .08em; text-underline-offset: .13
 .course-meta, .course-back { color: #5b6570; }
 .course-header { margin-bottom: .75rem; }
 
-.article-content { max-width: 42rem; }
 .article-content h2 { margin-top: 2rem; }
 .article-content p { margin: 1rem 0; }
 .article-content blockquote {
