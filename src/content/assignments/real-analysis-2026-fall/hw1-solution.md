@@ -19,35 +19,113 @@ $$
 
 ### 证明 $\{B_n\}$ 两两互不相交
 
-任取 $m<n$。由 $B_m\subseteq A_m$，并且
+根据定义，
+
+$$
+B_1=A_1,
+$$
+
+并且对于 $n\geq 2$，
 
 $$
 B_n
 =
-A_n\setminus\bigcup_{i=1}^{n-1}A_i,
+A_n\setminus\bigcup_{i=1}^{n-1}A_i.
 $$
 
-可知
+因此有：
 
 $$
-B_n\cap A_m=\varnothing,
+B_n\subseteq A_n.
 $$
 
-因为 $m\le n-1$，从而 $A_m\subseteq\displaystyle\bigcup_{i=1}^{n-1}A_i$。
+下面证明任意两个不同的集合 $B_m$ 与 $B_n$ 都不相交。
 
-又因为 $B_m\subseteq A_m$，所以
+任取 $m\neq n$。不妨设
+
+$$
+m<n.
+$$
+
+由于 $m<n$，所以$m\leq n-1.$
+
+因此，$A_m$ 是集合$A_1,A_2,\ldots,A_{n-1}$中的一个，从而
+
+$$
+A_m
+\subseteq
+\bigcup_{i=1}^{n-1}A_i.
+$$
+
+另一方面，根据 $B_n$ 的定义，
+
+$$
+B_n
+=
+A_n\setminus\bigcup_{i=1}^{n-1}A_i.
+$$
+
+这说明 $B_n$ 中的元素均不属于
+
+$$
+\bigcup_{i=1}^{n-1}A_i.
+$$
+
+因此，
+
+$$
+B_n
+\cap
+\bigcup_{i=1}^{n-1}A_i
+=
+\varnothing.
+$$
+
+又因为
+
+$$
+A_m
+\subseteq
+\bigcup_{i=1}^{n-1}A_i,
+$$
+
+所以
+
+$$
+B_n\cap A_m
+=
+\varnothing.
+$$
+
+而前面已经证明
+
+$$
+B_m\subseteq A_m,
+$$
+
+因此
+
+$$
+B_m\cap B_n
+\subseteq
+A_m\cap B_n
+=
+\varnothing.
+$$
+
+于是
 
 $$
 B_m\cap B_n=\varnothing.
 $$
 
-因此，对于任意 $m\ne n$，都有
+由于 $m\neq n$ 是任意选取的，所以对于任意 $m\neq n$，都有
 
 $$
 B_m\cap B_n=\varnothing.
 $$
 
-故 $\{B_n\}$ 是一列两两互不相交的集合。
+故集合列 $\{B_n\}$ 两两互不相交。
 
 ### 证明有限并集相等
 
