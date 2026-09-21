@@ -1,20 +1,24 @@
 ## 16. 证明以有理点为圆心、有理数为半径的圆的全体是可数集
 
-设 $A$ 表示平面上所有以有理点为圆心、以正有理数为半径的圆所构成的集合。
+设 $A$ 为平面上所有以有理点为圆心、以正有理数为半径的圆所组成的集合。证明 $A$ 是可数集。
 
-任意一个圆都可以由圆心与半径唯一确定。若圆心为
-
-$$
-(a,b)\in\mathbb{Q}^2,
-$$
-
-半径为
+任意 $C\in A$ 都可以由其圆心与半径唯一确定。设圆心为 $(a,b)$，半径为 $r$，则
 
 $$
-r\in\mathbb{Q}>0,
+a,b\in\mathbb{Q},
+\qquad
+r\in\mathbb{Q}_{>0},
 $$
 
-则这个圆可以表示为
+其中
+
+$$
+\mathbb{Q}_{>0}
+=
+\{q\in\mathbb{Q}:q>0\}.
+$$
+
+因此，每个圆都可以唯一表示为
 
 $$
 C(a,b,r)
@@ -25,32 +29,38 @@ C(a,b,r)
 \right\}.
 $$
 
-因此，集合 $A$ 与参数集合
+定义映射
 
 $$
-\mathbb{Q}^2\times\mathbb{Q}>0
+\Phi:
+\mathbb{Q}^2\times\mathbb{Q}_{>0}
+\longrightarrow A,
 $$
 
-之间存在一一对应关系：
-
 $$
-(a,b,r)
-\longmapsto
-C(a,b,r).
+\Phi(a,b,r)=C(a,b,r).
 $$
 
-由于有理数集 $\mathbb{Q}$ 是可数集，有限个可数集的笛卡尔积仍然是可数集，所以
+由于每个圆都有唯一的圆心和正半径，所以 $\Phi$ 是双射。因此，
 
 $$
-\mathbb{Q}^2\times\mathbb{Q}>0
+A\sim\mathbb{Q}^2\times\mathbb{Q}_{>0}.
+$$
+
+又因为 $\mathbb{Q}$ 是可数集，$\mathbb{Q}_{>0}\subseteq\mathbb{Q}$ 也是可数集，而有限个可数集的笛卡尔积仍是可数集，所以
+
+$$
+\mathbb{Q}^2\times\mathbb{Q}_{>0}
+=
+\mathbb{Q}\times\mathbb{Q}\times\mathbb{Q}_{>0}
 $$
 
 是可数集。
 
-因此，$A$ 是可数集。
+故
 
 $$
-\boxed{A\text{ 是可数集}}
+\boxed{A\text{ 是可数集。}}
 $$
 
 ---
